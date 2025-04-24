@@ -66,3 +66,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.neuro-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.dashboard {
+  position: absolute;
+  top:20px;
+  left: 20px;
+  z-index: 1000;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+}

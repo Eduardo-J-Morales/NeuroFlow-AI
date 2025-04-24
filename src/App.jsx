@@ -81,6 +81,16 @@ function App() {
 
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    if (focused) {
+      animationRef.current = requestAnimationFrame(() => {
+        setSessionTime(prev => prev + 0.1)
+      })
+    }
+    return () => cancelAnimationFrame(animationRef.current);
+  }, [focused]);
+
   return (
     <div className="neuro-container">
       <div className="dashboard">
