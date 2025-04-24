@@ -10,9 +10,37 @@ const generateFakeEGG = () => ({
   gamma: Math.random() * 3
 })
 
-async function loadModel() {
-  const model = await tf.loadLayersModel('/focus_model/model.json')
+const createModel = () => {
+  const model = tf.sequential({
+    layers: [
+      tf.layers.dense({
+        units: 8,
+        activation: 'relu',
+        inputShape: [3]
+      }),
+      tf.layers.dense({
+        units: 1,
+        activation: 'sigmoid'
+      })
+    ]
+  })
+
+  model.compile({
+    optimizer: 'adam',
+    loss: 'binary_crossentropy',
+    metrics: ['accuracy']
+  })
+
   return model
+}
+
+const trainModel = async (model) => { 
+  const xs = tf.tensor2d([
+    [15.2, 4.1, 2.8],  // Focused state
+    [5.3, 6.7, 1.2],   // Distracted
+    [18.9, 3.2, 2.5],  // Focused
+    [4.8, 7.1, 0.9]    // Distracted
+  ])
 }
 
 function App() {
@@ -23,9 +51,6 @@ function App() {
 
   useEffect(() => {
     console.log('happening')
-    loadModel().then(model => {
-      modelRef.current = model
-    })
   }, [])
   return (
     <div className="neuro-container">
