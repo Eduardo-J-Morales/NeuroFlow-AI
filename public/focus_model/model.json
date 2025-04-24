@@ -1,0 +1,23 @@
+{
+  "class_name": "Sequential",
+  "config": {
+    "name": "sequential",
+    "layers": [
+      {
+        "class_name": "Dense",
+        "config": {
+          "units": 8,
+          "activation": "relu",
+          "input_shape": [3]
+        }
+      },
+      {
+        "class_name": "Dense",
+        "config": {
+          "units": 1,
+          "activation": "sigmoid"
+        }
+      }
+    ]
+  }
+}

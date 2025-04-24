@@ -22,6 +22,7 @@ function App() {
   const animationRef = useRef()
 
   useEffect(() => {
+    console.log('happening')
     loadModel().then(model => {
       modelRef.current = model
     })
