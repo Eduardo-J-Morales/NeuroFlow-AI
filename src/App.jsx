@@ -4,11 +4,6 @@ import { Canvas } from '@react-three/fiber'
 import { Sphere, OrbitControls } from '@react-three/drei'
 import { positionGeometry } from 'three/tsl'
 
-const generateFakeEGG = () => ({
-  alpha: Math.random() * 10 + (focused ? 15 : 5),
-  beta: Math.random() * 5,
-  gamma: Math.random() * 3
-})
 
 const createModel = () => {
   const model = tf.sequential({
@@ -27,7 +22,7 @@ const createModel = () => {
 
   model.compile({
     optimizer: 'adam',
-    loss: 'binary_crossentropy',
+    loss: 'binaryCrossentropy',
     metrics: ['accuracy']
   })
 
@@ -41,6 +36,19 @@ const trainModel = async (model) => {
     [18.9, 3.2, 2.5],  // Focused
     [4.8, 7.1, 0.9]    // Distracted
   ])
+
+  const ys = tf.tensor2d([
+    [1],  // Focused
+    [0],  // Distracted
+    [1],
+    [0]
+  ])
+
+  await model.fit(xs, ys, {
+    epochs: 100,
+    batchSize: 2,
+    validationSplit: 0.2
+  })
 }
 
 function App() {
@@ -49,8 +57,29 @@ function App() {
   const modelRef = useRef(null)
   const animationRef = useRef()
 
+  const generateFakeEGG = () => ({
+    alpha: Math.random() * 10 + (focused ? 15 : 5),
+    beta: Math.random() * 5,
+    gamma: Math.random() * 3
+  })
+  
   useEffect(() => {
-    console.log('happening')
+    const initializeModel = async () => {
+      const model = createModel();
+      await trainModel(model);
+      modelRef.current = model;
+    }
+
+    initializeModel()
+
+    const interval = setInterval(() => {
+      const eggData = generateFakeEGG()
+      const input = tf.tensor2d([[eggData.alpha, eggData.beta, eggData.gamma]])
+      const prediction = modelRef.current.predict(input)
+      setFocused(prediction.dataSync()[0] > 0.7)
+    }, 1000)
+
+    return () => clearInterval(interval)
   }, [])
   return (
     <div className="neuro-container">
