@@ -1,30 +1,26 @@
-# NueroFocus Analyzer - Brainwave Visualization System 
+# NeuroFlowAI 🧠⚡  
+**Browser-Based Focus State Simulation with AI-Powered Insights**
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/js)
+[![Three.js](https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=white)](https://threejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A real-time cognitive state visualization system that combines machine learning with 3D visualization to anaylyze EGG sensor data.
-
-## Features 
-
-- 🧠 **Neural Network Analysis**
-  - Real-time focus detection using TensorFlow.js
-  - Binary classification (Focused/Distracted)
-  - Simulated EEG data stream (alpha, beta, gama waves)
-
-- 🌐 **3D Visualization**
-  - Interactive brain sphere visualization
-  - Dynamic color changes based on cognitive state
-  - Orbit controls for 360° viewing
-
-- 📊 **Dashboard**
-  - Real-time focus status indicator
-  - Session timer with animation
-  - Cognitive state hisotry visualization
-
-## Installation
-
-1. Clone the repository:
+## 🧬 Core Features
+- **Synthetic EEG Generation**: Simulated alpha/beta/gamma waves
+- **In-Browser ML Training**: TensorFlow.js neural network
+- **3D Focus Feedback**: Color-changing brain sphere
+- **Precision Session Timer**: Focus-duration analytics
+- **Production-Grade React**: Clean state management
+  
+## 🚀 Installation
 ```bash
-git clone 
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/NeuroFlowAI.git
+
+# Install dependencies
+cd NeuroFlowAI
+npm install
+
+# Start development server
+npm run dev
