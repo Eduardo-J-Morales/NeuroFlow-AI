@@ -9,7 +9,7 @@
   <a href="https://neuroflowai.vercel.app">
     <img src="./public/demo.gif" width="800" alt="Live Demo Preview">
   </a>
-  <br>
+
   <em>Experience NeuroFlowAI → [Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)</em>
 </div>
 
