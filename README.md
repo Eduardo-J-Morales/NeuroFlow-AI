@@ -6,6 +6,14 @@
 [![Three.js](https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=white)](https://threejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+div align="center">
+  <a href="https://neuroflowai.vercel.app">
+    <img src="./public/demo.gif" width="800" alt="Live Demo Preview">
+  </a>
+  <br>
+  <em>Experience NeuroFlowAI → <a href="https://neuroflowai.vercel.app">Live Demo</a></em>
+</div>
+
 ## 🧬 Core Features
 - **Synthetic EEG Generation**: Simulated alpha/beta/gamma waves
 - **In-Browser ML Training**: TensorFlow.js neural network
