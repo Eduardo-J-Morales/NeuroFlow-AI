@@ -190,58 +190,7 @@ function App() {
           </div>
         )}
       </div>
-
-      <Canvas camera={{ position: [0, 0, 10] }} >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <LayerVisualization
-          position={[0, 0, 0]}
-          nodes={1}
-          layerType="output"
-          confidence={modelInsights.lastPrediction?.confidence}
-        />
-      </Canvas>
     </div>
-  )
-}
-
-const LayerVisualization = ({
-  position,
-  nodes,
-  layerType,
-  activation,
-  confidence,
-}) => {
-
-  return (
-    <group position={position}>
-      <Text
-        position={[0, 1.5, 0]}
-        fontSize={0.4}
-        color={confidence ? `hsl(${confidence * 120}, 70%, 50%)` : '#888'}
-      >
-        {`${layerType.toUpperCase()}`}
-      </Text>
-
-      {Array.from({ length: nodes }).map((_, i) => (
-        <Sphere
-          position={[
-            (i - nodes / 2) * 0.5,
-            0,
-            0
-          ]}
-          args={[0.2, 32, 32]}
-        >
-          <meshStandardMaterial
-            color={confidence ?
-              `hsl(${confidence * 120}, 70%, 50%)` : '#888'}
-            emissive={confidence ?
-              `hsl(${confidence * 120}, 100%, 30%)` : '#444'}
-            emissiveIntensity={0.5}
-          />
-        </Sphere>
-      ))}
-    </group>
   )
 }
 
