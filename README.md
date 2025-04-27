@@ -1,5 +1,6 @@
 # NeuroFlowAI 🧠⚡  
-**Browser-Based Focus State Simulation with AI-Powered Insights**
+
+This web app uses an AI model trained with TensorFlow.js to guess if a (fake) person would be "focused" or "distracted" based on simulated brain waves (alpha/beta/gamma) generated every second. The app also shows a glowing meter for "how sure" the AI is about the fact of the person being distracted or focused an d displays the AI's "brain structure" using simple cards and represents the predicted state with emojis: 🧠 for focused and 😴 for distracted.
 
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/js)

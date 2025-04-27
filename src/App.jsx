@@ -128,7 +128,7 @@ function App() {
     <div className="neuro-container">
 
 <div className="status-header">
-      <h1>NeuroFocus Monitor</h1>
+      <h1>NeuroFlow AI</h1>
       <div className={`focus-state ${focused ? 'active' : 'inactive'}`}>
         <h2>
           {focused ? (
