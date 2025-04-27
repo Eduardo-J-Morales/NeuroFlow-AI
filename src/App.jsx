@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import * as tf from '@tensorflow/tfjs'
 import { Canvas } from '@react-three/fiber'
-import { Sphere, OrbitControls } from '@react-three/drei'
-import { positionGeometry } from 'three/tsl'
-
+import { Sphere, Text, Line } from '@react-three/drei'
 
 const createModel = () => {
   const model = tf.sequential({
@@ -29,7 +27,7 @@ const createModel = () => {
   return model
 }
 
-const trainModel = async (model) => { 
+const trainModel = async (model) => {
   const xs = tf.tensor2d([
     [15.2, 4.1, 2.8],  // Focused state
     [5.3, 6.7, 1.2],   // Distracted
@@ -54,61 +52,196 @@ const trainModel = async (model) => {
 function App() {
   const [focused, setFocused] = useState(false)
   const [sessionTime, setSessionTime] = useState(0)
+  const [modelInsights, setModelInsights] = useState({
+    architecture: [],
+    weights: [],
+    lastPrediction: null,
+    featureImportance: { alpha: 0.65, beta: 0.25, gamma: 0.10 }
+  })
   const modelRef = useRef(null)
   const animationRef = useRef()
 
-  const generateFakeEGG = () => ({
-    alpha: Math.random() * 10 + (focused ? 15 : 5),
-    beta: Math.random() * 5,
-    gamma: Math.random() * 3
-  })
-  
+  const generateFakeEEG = () => {
+
+    return {
+      alpha: Math.random() * 10 + (focused ? 15 : 5),
+      beta: Math.random() * 5,
+      gamma: Math.random() * 3
+    }
+  }
+
   useEffect(() => {
     const initializeModel = async () => {
-      const model = createModel();
-      await trainModel(model);
-      modelRef.current = model;
+      const model = createModel()
+      await trainModel(model)
+
+      const layers = model.layers.map(layer => ({
+        name: layer.name,
+        units: layer.units,
+        activation: layer.activation,
+        inputShape: layer.batchInputShape,
+        outputShape: layer.outputShape
+      }))
+
+      const weights = model.getWeights().map(w => w.shape)
+
+      setModelInsights(prev => ({
+        ...prev,
+        architecture: layers,
+        weights: weights
+      }))
+
+      modelRef.current = model
     }
 
     initializeModel()
-
-    const interval = setInterval(() => {
-      const eggData = generateFakeEGG()
-      const input = tf.tensor2d([[eggData.alpha, eggData.beta, eggData.gamma]])
-      const prediction = modelRef.current.predict(input)
-      setFocused(prediction.dataSync()[0] > 0.7)
-    }, 1000)
-
-    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
-    if (focused) {
-      animationRef.current = requestAnimationFrame(() => {
-        setSessionTime(prev => prev + 0.1)
-      })
-    }
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [focused]);
+    const predictionInterval = setInterval(async () => {
+      const eegData = generateFakeEEG()
+      const input = tf.tensor2d([[eegData.alpha, eegData.beta, eegData.gamma]])
+
+      if (modelRef.current) {
+        const prediction = modelRef.current.predict(input)
+        const confidence = prediction.dataSync()[0]
+        const isFocused = confidence > 0.7
+
+        setModelInsights(prev => ({
+          ...prev,
+          lastPrediction: {
+            input: eegData,
+            confidence: confidence,
+            threshold: 0.7,
+            decisionBoundary: confidence.toFixed(3)
+          }
+        }))
+
+        setFocused(isFocused)
+      }
+    }, 1000)
+
+    return () => clearInterval(predictionInterval)
+  }, [])
 
   return (
     <div className="neuro-container">
-      <div className="dashboard">
-        <h2>Focus Level: {focused ? 'Deep Focus' : 'Distracted 😴'} </h2>
-        <p>Session Time: {Math.floor(sessionTime)}</p>
+
+<div className="status-header">
+      <h1>NeuroFocus Monitor</h1>
+      <div className={`focus-state ${focused ? 'active' : 'inactive'}`}>
+        <h2>
+          {focused ? (
+            <>
+              <span className="pulse">🧠</span> In Focus Zone
+            </>
+          ) : (
+            <>
+              <span>😴</span> Attention Drifting
+            </>
+          )}
+        </h2>
+        <p className="state-subtitle">
+          {focused 
+            ? "Optimal cognitive engagement detected"
+            : "Increased mind-wandering patterns observed"}
+        </p>
       </div>
-      <Canvas camera={{ position: [0, 0, 5] }}>
+    </div>
+      <div className="dashboard">
+
+        <div className="model-card">
+          <h3>Neural Network Architecture</h3>
+          <div className="layers-grid">
+            {modelInsights.architecture.map((layer, idx) => (
+              <div key={idx} className="layer-card">
+                <h4>Layer Type: {layer.name}</h4>
+                <p>Units: {layer.units}</p>
+                <p>Activation: {`${layer.activation.constructor.name}`}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {modelInsights.lastPrediction && (
+          <div className="prediction-card">
+            <h3>Decision Analysis</h3>
+            <div className="prediction-grid">
+              <div>
+                <h4>Input Features</h4>
+                <ul>
+                  <li>Alpha: {modelInsights.lastPrediction.input.alpha.toFixed(2)}Hz</li>
+                  <li>Beta: {modelInsights.lastPrediction.input.beta.toFixed(2)}Hz</li>
+                  <li>Gamma: {modelInsights.lastPrediction.input.gamma.toFixed(2)}Hz</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Model Confidence</h4>
+                <div className="confidence-meter">
+                  <div
+                    className="confidence-fill"
+                    style={{ width: `${modelInsights.lastPrediction.confidence * 100}%` }}
+                  />
+                  <span>{modelInsights.lastPrediction.confidence.toFixed(3)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <Canvas camera={{ position: [0, 0, 10] }} >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
-        <Sphere args={[1, 32, 32]} position={[0, 0, 0]}>
-          <meshPhongMaterial
-            color={focused ? '#00ff88' : '#ff0000'}
-            emissive={focused ? '#00ff88' : '#ff0000'}
+        <LayerVisualization
+          position={[0, 0, 0]}
+          nodes={1}
+          layerType="output"
+          confidence={modelInsights.lastPrediction?.confidence}
+        />
+      </Canvas>
+    </div>
+  )
+}
+
+const LayerVisualization = ({
+  position,
+  nodes,
+  layerType,
+  activation,
+  confidence,
+}) => {
+
+  return (
+    <group position={position}>
+      <Text
+        position={[0, 1.5, 0]}
+        fontSize={0.4}
+        color={confidence ? `hsl(${confidence * 120}, 70%, 50%)` : '#888'}
+      >
+        {`${layerType.toUpperCase()}`}
+      </Text>
+
+      {Array.from({ length: nodes }).map((_, i) => (
+        <Sphere
+          position={[
+            (i - nodes / 2) * 0.5,
+            0,
+            0
+          ]}
+          args={[0.2, 32, 32]}
+        >
+          <meshStandardMaterial
+            color={confidence ?
+              `hsl(${confidence * 120}, 70%, 50%)` : '#888'}
+            emissive={confidence ?
+              `hsl(${confidence * 120}, 100%, 30%)` : '#444'}
             emissiveIntensity={0.5}
           />
         </Sphere>
-      </Canvas>
-    </div>
+      ))}
+    </group>
   )
 }
 
