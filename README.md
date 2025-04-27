@@ -19,7 +19,7 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 ## 🚀 Installation
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/NeuroFlowAI.git
+git clone https://github.com/Eduardo-J-Morales/NeuroFlow-AI.git
 
 # Install dependencies
 cd NeuroFlowAI
