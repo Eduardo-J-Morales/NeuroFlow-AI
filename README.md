@@ -6,9 +6,8 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 [![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/js)
 [![Three.js](https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=white)](https://threejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# [🌐 Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)
 
-  <em>Experience NeuroFlowAI → [Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)</em>
+# <em>Experience NeuroFlowAI → [Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)</em>
 
 ## 🧬 Core Features
 - **Synthetic EEG Generation**: Simulated alpha/beta/gamma waves
