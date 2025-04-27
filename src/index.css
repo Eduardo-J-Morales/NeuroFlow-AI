@@ -113,6 +113,40 @@ h3 {
 }
 
 .layer-card:hover {
-  transform: translate(-3px);
-  
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+.confidence-meter {
+  background: rgba(255, 255, 255, 0.1);
+  height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neuro-primary), var(--neuro-accent));
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+confidence-fill::after {
+  content: '';
+  position:absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(0, 243, 255, 0.4),
+    rgba(0, 255, 136, 0.4)
+  );
+  animation: shine 2s infinite;
+}
+@keyframes shine {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
