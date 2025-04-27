@@ -85,6 +85,34 @@ body {
 
 .model-card, .prediction-card  {
   background: rgba(10, 14, 23, 0.8);
-  border: 1px solid rgba(0, 243, 255, 0.2)
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+}
+
+h3 {
+  color: var(--neuro-primary);
+  border-bottom: 2px solid var(--neuro-primary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.layers-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.layer-card {
+  background: rgba(0, 243, 255, 0.05);
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  transition: all 0.3 ease;
+}
+
+.layer-card:hover {
+  transform: translate(-3px);
   
 }
