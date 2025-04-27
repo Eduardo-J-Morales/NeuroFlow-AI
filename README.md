@@ -1,4 +1,4 @@
-# NeuroFlowAI 🧠⚡  
+# NeuroFlow AI 🧠⚡  
 
 This web app employs an AI model, trained with TensorFlow.js, to predict whether a simulated individual is "focused" or "distracted." This prediction is based on simulated brain wave data (alpha, beta, gamma) generated every second. The app also features a glowing meter indicating the AI's confidence level in its prediction and visually represents the AI's "brain structure" using simple cards. Finally, it displays the predicted state with emojis: 🧠 for focused and 😴 for distracted.
 
@@ -7,7 +7,7 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 [![Three.js](https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=white)](https://threejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# <em>Experience NeuroFlowAI → [Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)</em>
+# <em>Experience NeuroFlow AI → [Live Demo](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)</em>
 
 ## 🧬 Core Features
 - **Synthetic EEG Generation**: Simulated alpha/beta/gamma waves
@@ -22,7 +22,7 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 git clone https://github.com/Eduardo-J-Morales/NeuroFlow-AI.git
 
 # Install dependencies
-cd NeuroFlowAI
+cd NeuroFlow-AI
 npm install
 
 # Start development server
