@@ -9,6 +9,17 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardo-J-Morales/NeuroFlow-AI.git"
+  },
+  "keywords": [],
+  "author": "Eduardo Morales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eduardo-J-Morales/NeuroFlow-AI/issues"
+  },
+  "homepage": "https://github.com/Eduardo-J-Morales/NeuroFlow-AI#readme",
   "dependencies": {
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
