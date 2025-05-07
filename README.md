@@ -3,7 +3,7 @@
 This web app employs an AI model, trained with TensorFlow.js, to predict whether a simulated individual is "focused" or "distracted." This prediction is based on simulated brain wave data (alpha, beta, gamma) generated every second. The app also features a glowing meter indicating the AI's confidence level in its prediction and visually represents the AI's "brain structure" using simple cards. Finally, it displays the predicted state with emojis: 🧠 for focused and 😴 for distracted.
 
 > ⚡ **Note:** There is an explanation to install this Web App below for developers, however you don't need to install anything to try this Web App!  
-> An online demo is available here: [Live APP Deployment](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)
+> An online demo is available here: [Live Web App Deployment](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)
 
 ## Features
 
