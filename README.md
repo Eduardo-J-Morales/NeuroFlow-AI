@@ -4,7 +4,6 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 
 > ⚡ **Note:** There is an explanation to install this Web App below for developers, however you don't need to install anything to try this Web App!  
 > An online demo is available here: [Live API Deployment](https://neuro-flow-ai-git-main-eduardo-j-morales-projects.vercel.app/)
-> (See below for usage instructions and example requests.)
 
 ## Features
 
