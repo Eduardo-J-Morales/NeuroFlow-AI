@@ -23,17 +23,17 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
 ## Installation
 
 1. ### Clone the repo:
-  ```bash
-  git clone https://github.com/Eduardo-J-Morales/NeuroFlow-AI.git
-  cd NeuroFlow-AI
-  ```
+    ```bash
+    git clone https://github.com/Eduardo-J-Morales/NeuroFlow-AI.git
+    cd NeuroFlow-AI
+    ```
 
 2. ### Install dependencies:
-  ```bash
-  npm install
-  ```
+    ```bash
+    npm install
+    ```
 
 3. ### Run the app:
-  ```bash
-  npm run dev
-  ```
+    ```bash
+    npm run dev
+    ```
