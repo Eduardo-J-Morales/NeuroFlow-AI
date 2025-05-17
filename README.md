@@ -36,3 +36,7 @@ This web app employs an AI model, trained with TensorFlow.js, to predict whether
     ```bash
     npm run dev
     ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
